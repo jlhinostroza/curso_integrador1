@@ -1,9 +1,13 @@
 package Formularios;
 
+import Clases.DatosPrograma;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.event.ChangeEvent;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -56,22 +60,12 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(this);
-        this.setTitle("HipoTest - SNAPSHOT v0.3");
+        this.setTitle("HipoTest - " + DatosPrograma.version);
+        jInternalFrame1.setVisible(false);
 
         ImageIcon icono = new ImageIcon(getClass().getResource("/Imagenes/ICONO.png"));
         setIconImage(icono.getImage());
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        sliProp.addChangeListener((ChangeEvent e) -> {
-            valPropHipo = sliProp.getValue();
-            tfiHipo.setText(String.valueOf(getValPropHipo()));
-        });
-
-        sliSig.addChangeListener((ChangeEvent e) -> {
-            valSig = sliSig.getValue();
-            tfiSig.setText(String.valueOf(getValSig()));
-        });
-
     }
 
     @SuppressWarnings("unchecked")
@@ -98,6 +92,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jSeparator1 = new javax.swing.JSeparator();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -132,15 +127,18 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(899, 730));
         setPreferredSize(new java.awt.Dimension(899, 730));
         setSize(new java.awt.Dimension(899, 730));
 
+        jInternalFrame1.setClosable(true);
         jInternalFrame1.setTitle("Desarrollo");
         jInternalFrame1.setVisible(true);
 
@@ -149,8 +147,8 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel14.setText("Paso 4: Región de rechazo");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 370, 20));
+        jLabel14.setText("Paso 5: Conclusiones ");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 370, 20));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel19.setText("?");
@@ -195,27 +193,28 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 40, -1));
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/zcal.jpg"))); // NOI18N
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 210, 110));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 200, 110));
 
         jLabel22.setBackground(new java.awt.Color(255, 255, 255));
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel22.setText("Paso 3: Estadístico de prueba");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 370, 20));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 360, 20));
 
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Graficos/CASO1-RECHAZO1.jpg"))); // NOI18N
         jLabel25.setText("?");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 290, 110));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 280, 110));
 
         jLabel26.setBackground(new java.awt.Color(255, 255, 255));
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel26.setText("Paso 4: Región de rechazo");
-        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 370, 20));
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 360, 20));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 330, 60));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 350, 140));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 480, 10));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -237,15 +236,15 @@ public class Principal extends javax.swing.JFrame {
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 812, Short.MAX_VALUE)
+            .addGap(0, 804, Short.MAX_VALUE)
             .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 636, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -264,6 +263,11 @@ public class Principal extends javax.swing.JFrame {
         sliSig.setMaximum(10);
         sliSig.setMinimum(1);
         sliSig.setValue(5);
+        sliSig.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sliSigStateChanged(evt);
+            }
+        });
         jPanel2.add(sliSig, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 270, -1));
 
         jLabel4.setText("%");
@@ -319,6 +323,12 @@ public class Principal extends javax.swing.JFrame {
 
         spiMuestra.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         jPanel2.add(spiMuestra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 220, -1));
+
+        sliProp.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sliPropStateChanged(evt);
+            }
+        });
         jPanel2.add(sliProp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 270, -1));
 
         jPanel3.setBackground(new java.awt.Color(0, 204, 0));
@@ -392,15 +402,6 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu6.setBackground(new java.awt.Color(221, 221, 221));
         jMenu6.setText("Ejecución");
-        jMenu6.addMenuListener(new javax.swing.event.MenuListener() {
-            public void menuCanceled(javax.swing.event.MenuEvent evt) {
-            }
-            public void menuDeselected(javax.swing.event.MenuEvent evt) {
-            }
-            public void menuSelected(javax.swing.event.MenuEvent evt) {
-                jMenu6MenuSelected(evt);
-            }
-        });
 
         jMenuItem8.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jMenuItem8.setForeground(new java.awt.Color(0, 204, 0));
@@ -415,13 +416,35 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
+        jMenu4.setText("Recursos");
+
+        jMenuItem5.setText("Material informativo");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem5);
+
+        jMenuItem6.setText("Tablas estadísticas");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu4);
+
         jMenu2.setText("Ayuda");
 
         jMenuItem1.setText("Acerca del programa");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
-
-        jMenuItem5.setText("Material informativo");
-        jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
 
@@ -437,26 +460,24 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
+                        .addGap(120, 120, 120)
                         .addComponent(jLabel13)))
-                .addGap(46, 46, 46)
+                .addGap(30, 30, 30)
                 .addComponent(jInternalFrame1)
-                .addContainerGap())
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel13)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jInternalFrame1)))
-                .addContainerGap())
+                .addGap(44, 44, 44)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jInternalFrame1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -471,6 +492,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        jInternalFrame1.setVisible(false);
+        cboPlantHipo.setSelectedItem("-------------Seleccione--------------");
+        sliProp.setValue(50);
+        sliSig.setValue(5);
+        spiMuestra.setValue(0);
+        spiExito.setValue(0);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -486,24 +513,55 @@ public class Principal extends javax.swing.JFrame {
     private void tfiSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfiSigActionPerformed
     }//GEN-LAST:event_tfiSigActionPerformed
 
-    private void jMenu6MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu6MenuSelected
+    private void butIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butIngresarMouseClicked
+        jInternalFrame1.setVisible(true);
+        /*
         valPlantHipo = (String) cboPlantHipo.getSelectedItem();
         valMuestra = (int) spiMuestra.getValue();
         valExito = (int) spiExito.getValue();
         valSig = sliSig.getValue();
-        valPropHipo = sliProp.getValue();
-
-    }//GEN-LAST:event_jMenu6MenuSelected
-
-    private void butIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butIngresarMouseClicked
-        this.setVisible(false);
-        new Principal().setVisible(true);
-        JOptionPane.showMessageDialog(null, "¡Bienvenid@!", "", JOptionPane.INFORMATION_MESSAGE);
+        valPropHipo = sliProp.getValue();*/
     }//GEN-LAST:event_butIngresarMouseClicked
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
+        jInternalFrame1.setVisible(true);
+        /*
+        valPlantHipo = (String) cboPlantHipo.getSelectedItem();
+        valMuestra = (int) spiMuestra.getValue();
+        valExito = (int) spiExito.getValue();
+        valSig = sliSig.getValue();
+        valPropHipo = sliProp.getValue();*/
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        new AcercaPrograma().setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("http://administracion.universidadipei.com/wp-content/uploads/2020/11/A3.pdf"));
+        } catch (IOException | URISyntaxException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://estadistica-dma.ulpgc.es/estadFCM/pdf/distribuciones.pdf"));
+        } catch (IOException | URISyntaxException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void sliPropStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliPropStateChanged
+        valPropHipo = sliProp.getValue();
+        tfiHipo.setText(String.valueOf(getValPropHipo()));
+    }//GEN-LAST:event_sliPropStateChanged
+
+    private void sliSigStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliSigStateChanged
+        valSig = sliSig.getValue();
+        tfiSig.setText(String.valueOf(getValSig()));
+    }//GEN-LAST:event_sliSigStateChanged
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -570,6 +628,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
@@ -579,6 +638,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
@@ -586,6 +646,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JSlider sliProp;
     private javax.swing.JSlider sliSig;

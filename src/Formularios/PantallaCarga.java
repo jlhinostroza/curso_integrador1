@@ -1,10 +1,10 @@
-
 package Formularios;
+
 import javax.swing.*;
 import java.awt.event.*;
 
 public class PantallaCarga extends javax.swing.JFrame {
-    
+
     private static Timer timer;
     private int progreso = 0;
 
@@ -12,7 +12,9 @@ public class PantallaCarga extends javax.swing.JFrame {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(this);
-        
+        ImageIcon icono = new ImageIcon(getClass().getResource("/Imagenes/ICONO.png"));
+        setIconImage(icono.getImage());
+
         timer = new Timer(100, (ActionEvent e) -> {
             progreso++;
             jProgressBar1.setValue(progreso);
@@ -24,7 +26,7 @@ public class PantallaCarga extends javax.swing.JFrame {
         });
         timer.start();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
