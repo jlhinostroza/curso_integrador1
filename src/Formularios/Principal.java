@@ -1,5 +1,7 @@
 package Formularios;
 
+import Calculos.Calculo;
+import Calculos.TablaZ;
 import Clases.DatosPrograma;
 import java.awt.Desktop;
 import java.io.IOException;
@@ -62,7 +64,6 @@ public class Principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         this.setTitle("HipoTest - " + DatosPrograma.version);
         jInternalFrame1.setVisible(false);
-
         ImageIcon icono = new ImageIcon(getClass().getResource("/Imagenes/ICONO.png"));
         setIconImage(icono.getImage());
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -76,11 +77,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        tfiSimbolo2 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        tfiValSignificancia = new javax.swing.JLabel();
+        tfih01 = new javax.swing.JLabel();
+        tfih02 = new javax.swing.JLabel();
         tfiSimbolo1 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        tfiSimbolo2 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -93,6 +94,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel16 = new javax.swing.JLabel();
+        tfivalZcal = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        tfivalZtab2 = new javax.swing.JLabel();
+        tfivalZtab1 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -113,11 +119,13 @@ public class Principal extends javax.swing.JFrame {
         cboPlantHipo = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        spiExito = new javax.swing.JSpinner();
-        spiMuestra = new javax.swing.JSpinner();
         sliProp = new javax.swing.JSlider();
         jPanel3 = new javax.swing.JPanel();
         butIngresar = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        tpaExito = new javax.swing.JTextField();
+        tpaMuestra = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -148,27 +156,27 @@ public class Principal extends javax.swing.JFrame {
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setText("Paso 5: Conclusiones ");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 370, 20));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 370, 20));
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel19.setText("?");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 40, -1));
+        tfiValSignificancia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfiValSignificancia.setText("?");
+        jPanel1.add(tfiValSignificancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 40, -1));
 
-        tfiSimbolo2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        tfiSimbolo2.setText("?");
-        jPanel1.add(tfiSimbolo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
+        tfih01.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfih01.setText("π0");
+        jPanel1.add(tfih01, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 43, -1));
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel16.setText("π0");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 43, -1));
+        tfih02.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfih02.setText("π0");
+        jPanel1.add(tfih02, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 43, -1));
 
         tfiSimbolo1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         tfiSimbolo1.setText("?");
         jPanel1.add(tfiSimbolo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel20.setText("π0");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 43, -1));
+        tfiSimbolo2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tfiSimbolo2.setText("?");
+        jPanel1.add(tfiSimbolo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel15.setText("h1: π");
@@ -213,8 +221,23 @@ public class Principal extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 350, 140));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 480, 10));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 350, 140));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 480, 10));
+
+        jLabel16.setText("Zcal =");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, -1, 20));
+
+        tfivalZcal.setText("?");
+        jPanel1.add(tfivalZcal, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, 70, 20));
+
+        jLabel19.setText("Ztab =");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, -1, -1));
+
+        tfivalZtab2.setText("?");
+        jPanel1.add(tfivalZtab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 60, -1));
+
+        tfivalZtab1.setText("?");
+        jPanel1.add(tfivalZtab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, 60, -1));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -236,7 +259,7 @@ public class Principal extends javax.swing.JFrame {
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 804, Short.MAX_VALUE)
+            .addGap(0, 396, Short.MAX_VALUE)
             .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE))
         );
@@ -271,27 +294,17 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(sliSig, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 270, -1));
 
         jLabel4.setText("%");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, -1, 20));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, -1, 30));
 
         tfiSig.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         tfiSig.setEnabled(false);
-        tfiSig.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfiSigActionPerformed(evt);
-            }
-        });
-        jPanel2.add(tfiSig, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 40, -1));
+        jPanel2.add(tfiSig, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 40, -1));
 
         jLabel8.setText("%");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, 30));
 
         tfiHipo.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         tfiHipo.setEnabled(false);
-        tfiHipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfiHipoActionPerformed(evt);
-            }
-        });
         jPanel2.add(tfiHipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 40, -1));
 
         jLabel3.setText("10%");
@@ -317,12 +330,6 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel12.setText("Ocaciones de éxito:");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
-
-        spiExito.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        jPanel2.add(spiExito, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 220, -1));
-
-        spiMuestra.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        jPanel2.add(spiMuestra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 220, -1));
 
         sliProp.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -363,6 +370,25 @@ public class Principal extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 260, -1));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 220, 10));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 220, 10));
+
+        tpaExito.setBackground(new java.awt.Color(255, 255, 255));
+        tpaExito.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tpaExito.setText("0");
+        tpaExito.setBorder(null);
+        jPanel2.add(tpaExito, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 220, -1));
+
+        tpaMuestra.setBackground(new java.awt.Color(255, 255, 255));
+        tpaMuestra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tpaMuestra.setText("0");
+        tpaMuestra.setBorder(null);
+        tpaMuestra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tpaMuestraActionPerformed(evt);
+            }
+        });
+        jPanel2.add(tpaMuestra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 220, -1));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LOGO_IS.png"))); // NOI18N
 
@@ -496,8 +522,8 @@ public class Principal extends javax.swing.JFrame {
         cboPlantHipo.setSelectedItem("-------------Seleccione--------------");
         sliProp.setValue(50);
         sliSig.setValue(5);
-        spiMuestra.setValue(0);
-        spiExito.setValue(0);
+        tpaExito.setText("0");
+        tpaExito.setText("0");
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -507,30 +533,70 @@ public class Principal extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void tfiHipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfiHipoActionPerformed
-    }//GEN-LAST:event_tfiHipoActionPerformed
-
-    private void tfiSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfiSigActionPerformed
-    }//GEN-LAST:event_tfiSigActionPerformed
-
     private void butIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butIngresarMouseClicked
-        jInternalFrame1.setVisible(true);
-        /*
-        valPlantHipo = (String) cboPlantHipo.getSelectedItem();
-        valMuestra = (int) spiMuestra.getValue();
-        valExito = (int) spiExito.getValue();
-        valSig = sliSig.getValue();
-        valPropHipo = sliProp.getValue();*/
+        jInternalFrame1.setVisible(false);
+        double resZtab1 = 0;
+        double resZtab2 = 0;
+
+        double resZcal;
+        try {
+            setValPlantHipo((String) cboPlantHipo.getSelectedItem());
+            setValSig(sliSig.getValue());
+            setValPropHipo(sliProp.getValue());
+            setValMuestra(Integer.parseInt(tpaMuestra.getText()));
+            setValExito(Integer.parseInt(tpaExito.getText()));
+
+            if (!getValPlantHipo().equals("-------------Seleccione--------------")) {
+                if (getValMuestra() >= getValExito()) {
+                    if (getValMuestra() > 0 && getValExito() > 0) {
+                        resZcal = Calculo.Zcal(getValExito(), getValMuestra(), getValPropHipo());
+
+                        jInternalFrame1.setVisible(true);
+
+                        switch (getValPlantHipo()) {
+                            case "h0: π = π0 | h1: π ≠ π0":
+                                tfiSimbolo1.setText("=");
+                                tfiSimbolo2.setText("≠");
+                                resZtab1 = TablaZ.Caso1A(getValSig());
+                                resZtab2 = TablaZ.Caso1B(getValSig());
+                                break;
+                            case "h0: π ≤ π0 | h1: π > π0":
+                                tfiSimbolo1.setText("≤");
+                                tfiSimbolo2.setText(">");
+                                resZtab1 = TablaZ.Caso2(getValSig());
+                                break;
+
+                            case "h0: π ≥ π0 | h1: π < π0":
+                                tfiSimbolo1.setText("≥");
+                                tfiSimbolo2.setText("<");
+                                resZtab1 = TablaZ.Caso3(getValSig());
+                                break;
+                        }
+                        tfih01.setText(String.valueOf((double) getValPropHipo() / 100));
+                        tfih02.setText(String.valueOf((double) getValPropHipo() / 100));
+
+                        tfiValSignificancia.setText(String.valueOf(getValSig()) + "%");
+
+                        tfivalZcal.setText(String.valueOf(resZcal));
+                        tfivalZtab1.setText(String.valueOf(resZtab1));
+                        tfivalZtab2.setText(String.valueOf(resZtab2));
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ingrese valores mayores a 0");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Las ocaciones de éxito debe ser menor al tamaño de muestra");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese un planteamiento de hipótesis válido");
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Ingrese únicamente valores válidos");
+        }
     }//GEN-LAST:event_butIngresarMouseClicked
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        jInternalFrame1.setVisible(true);
-        /*
-        valPlantHipo = (String) cboPlantHipo.getSelectedItem();
-        valMuestra = (int) spiMuestra.getValue();
-        valExito = (int) spiExito.getValue();
-        valSig = sliSig.getValue();
-        valPropHipo = sliProp.getValue();*/
+
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -562,6 +628,10 @@ public class Principal extends javax.swing.JFrame {
         valSig = sliSig.getValue();
         tfiSig.setText(String.valueOf(getValSig()));
     }//GEN-LAST:event_sliSigStateChanged
+
+    private void tpaMuestraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tpaMuestraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tpaMuestraActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -611,7 +681,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -647,14 +716,22 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JSlider sliProp;
     private javax.swing.JSlider sliSig;
-    private javax.swing.JSpinner spiExito;
-    private javax.swing.JSpinner spiMuestra;
     private javax.swing.JTextField tfiHipo;
     private javax.swing.JTextField tfiSig;
     private javax.swing.JLabel tfiSimbolo1;
     private javax.swing.JLabel tfiSimbolo2;
+    private javax.swing.JLabel tfiValSignificancia;
+    private javax.swing.JLabel tfih01;
+    private javax.swing.JLabel tfih02;
+    private javax.swing.JLabel tfivalZcal;
+    private javax.swing.JLabel tfivalZtab1;
+    private javax.swing.JLabel tfivalZtab2;
+    private javax.swing.JTextField tpaExito;
+    private javax.swing.JTextField tpaMuestra;
     // End of variables declaration//GEN-END:variables
 }
