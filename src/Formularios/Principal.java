@@ -1,6 +1,7 @@
 package Formularios;
 
 import Calculos.Calculo;
+import Clases.LaTex_formulas;
 import Calculos.TablaZ;
 import Clases.DatosPrograma;
 import java.awt.Desktop;
@@ -10,6 +11,9 @@ import java.net.URISyntaxException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -18,7 +22,8 @@ public class Principal extends javax.swing.JFrame {
     static int valMuestra = 0;
     static int valExito = 0;
     static String valPlantHipo = "";
-
+    TeXIcon iconFormulaZcal;
+    
     public static int getValPropHipo() {
         return valPropHipo;
     }
@@ -67,6 +72,10 @@ public class Principal extends javax.swing.JFrame {
         ImageIcon icono = new ImageIcon(getClass().getResource("/Imagenes/ICONO.png"));
         setIconImage(icono.getImage());
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        iconFormulaZcal = LaTex_formulas.funcZcal("X", "n", "p");
+        labEcuacion.setIcon(iconFormulaZcal);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -87,18 +96,20 @@ public class Principal extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
+        labProd2 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jSeparator1 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         tfivalZcal = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         tfivalZtab2 = new javax.swing.JLabel();
         tfivalZtab1 = new javax.swing.JLabel();
+        labEcuacion = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        labProd1 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -156,7 +167,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setText("Paso 5: Conclusiones ");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 370, 20));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 920, 370, 20));
 
         tfiValSignificancia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tfiValSignificancia.setText("?");
@@ -185,7 +196,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel17.setText("Paso 1: Plateo de la hipótesis");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 300, 20));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 300, 30));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel21.setText("h0: π");
@@ -194,50 +205,60 @@ public class Principal extends javax.swing.JFrame {
         jLabel18.setBackground(new java.awt.Color(255, 255, 255));
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setText("Paso 2: Establecer nivel de significancia");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 370, 20));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 135, 370, -1));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel23.setText("α = ");
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 40, -1));
 
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/zcal.jpg"))); // NOI18N
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 200, 110));
+        labProd2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(labProd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, 200, 110));
 
         jLabel22.setBackground(new java.awt.Color(255, 255, 255));
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel22.setText("Paso 3: Estadístico de prueba");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 360, 20));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 360, 30));
 
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Graficos/CASO1-RECHAZO1.jpg"))); // NOI18N
         jLabel25.setText("?");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 280, 110));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 790, 280, 110));
 
         jLabel26.setBackground(new java.awt.Color(255, 255, 255));
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel26.setText("Paso 4: Región de rechazo");
-        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 360, 20));
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 750, 360, 30));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 350, 140));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 480, 10));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 950, 350, 140));
 
         jLabel16.setText("Zcal =");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, -1, 20));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 280, -1, 20));
 
         tfivalZcal.setText("?");
-        jPanel1.add(tfivalZcal, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, 70, 20));
+        jPanel1.add(tfivalZcal, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 280, 70, 20));
 
         jLabel19.setText("Ztab =");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, -1, -1));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 310, -1, -1));
 
         tfivalZtab2.setText("?");
-        jPanel1.add(tfivalZtab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 60, -1));
+        jPanel1.add(tfivalZtab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 330, 60, -1));
 
         tfivalZtab1.setText("?");
-        jPanel1.add(tfivalZtab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, 60, -1));
+        jPanel1.add(tfivalZtab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 310, 60, -1));
+
+        labEcuacion.setIcon(iconFormulaZcal);
+        labEcuacion.setBorder(javax.swing.BorderFactory.createTitledBorder("Fórmula:"));
+        jPanel1.add(labEcuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 200, 110));
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel24.setText("Procedimiento:");
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
+
+        labProd1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(labProd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 200, 110));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -537,7 +558,6 @@ public class Principal extends javax.swing.JFrame {
         jInternalFrame1.setVisible(false);
         double resZtab1 = 0;
         double resZtab2 = 0;
-
         double resZcal;
         try {
             setValPlantHipo((String) cboPlantHipo.getSelectedItem());
@@ -550,7 +570,12 @@ public class Principal extends javax.swing.JFrame {
                 if (getValMuestra() >= getValExito()) {
                     if (getValMuestra() > 0 && getValExito() > 0) {
                         resZcal = Calculo.Zcal(getValExito(), getValMuestra(), getValPropHipo());
-
+                        iconFormulaZcal = LaTex_formulas.prod1(getValExito(), getValMuestra(), (double)getValPropHipo()/100.0);
+                        labProd1.setIcon(iconFormulaZcal);
+                        
+                        iconFormulaZcal = LaTex_formulas.prod2(getValExito(), getValMuestra(), (double)getValPropHipo()/100.0);
+                        labProd2.setIcon(iconFormulaZcal);
+                        
                         jInternalFrame1.setVisible(true);
 
                         switch (getValPlantHipo()) {
@@ -572,6 +597,9 @@ public class Principal extends javax.swing.JFrame {
                                 resZtab1 = TablaZ.Caso3(getValSig());
                                 break;
                         }
+                        
+                        
+                        
                         tfih01.setText(String.valueOf((double) getValPropHipo() / 100));
                         tfih02.setText(String.valueOf((double) getValPropHipo() / 100));
 
@@ -587,9 +615,8 @@ public class Principal extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Las ocaciones de éxito debe ser menor al tamaño de muestra");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Ingrese un planteamiento de hipótesis válido");
+                JOptionPane.showMessageDialog(null, "Ingrese un planteamiento de hipótesis");
             }
-
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingrese únicamente valores válidos");
         }
@@ -715,10 +742,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel labEcuacion;
+    private javax.swing.JLabel labProd1;
+    private javax.swing.JLabel labProd2;
     private javax.swing.JSlider sliProp;
     private javax.swing.JSlider sliSig;
     private javax.swing.JTextField tfiHipo;
