@@ -15,7 +15,7 @@ public class PantallaCarga extends javax.swing.JFrame {
         ImageIcon icono = new ImageIcon(getClass().getResource("/Imagenes/ICONO.png"));
         setIconImage(icono.getImage());
 
-        timer = new Timer(100, (ActionEvent e) -> {
+        timer = new Timer(50, (ActionEvent e) -> {
             progreso++;
             jProgressBar1.setValue(progreso);
             if (progreso >= 100) {
