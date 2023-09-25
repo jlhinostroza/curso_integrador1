@@ -1,18 +1,27 @@
 package Formularios;
 
-import Calculos.Calculo;
+import Calculos.*;
 import Clases.LaTex_formulas;
-import Calculos.TablaZ;
-import Clases.DatosPrograma;
-import static Clases.definirGrafico.defGrafico;
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import Clases.DatosPrograma;
+import java.awt.Desktop;
+import java.net.URI;
+import java.net.URISyntaxException;
 import org.scilab.forge.jlatexmath.TeXIcon;
+import static Clases.definirGrafico.defGrafico;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Component;
+import java.awt.image.BufferedImage;
+import javax.swing.JScrollPane;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -22,6 +31,11 @@ public class Principal extends javax.swing.JFrame {
     static int valExito = 0;
     static String valPlantHipo = null;
     TeXIcon iconFormulaZcal;
+    public String simbolo1 = null;
+    public String simbolo2 = null;
+    public double resZtab1 = 0;
+    public double resZtab2 = 0;
+    public double resZcal;
 
     public static int getValPropHipo() {
         return valPropHipo;
@@ -71,6 +85,7 @@ public class Principal extends javax.swing.JFrame {
         ImageIcon icono = new ImageIcon(getClass().getResource("/Imagenes/ICONO.png"));
         setIconImage(icono.getImage());
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        jLabel31.setText(DatosPrograma.version);
     }
 
     @SuppressWarnings("unchecked")
@@ -89,6 +104,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tarConclusiones = new javax.swing.JTextArea();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         labEcuacion = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         labProd1 = new javax.swing.JLabel();
@@ -113,6 +130,13 @@ public class Principal extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -162,9 +186,12 @@ public class Principal extends javax.swing.JFrame {
         jInternalFrame1.setTitle("Desarrollo");
         jInternalFrame1.setVisible(true);
 
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(903, 1496));
+        jScrollPane1.setName(""); // NOI18N
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMinimumSize(new java.awt.Dimension(890, 1400));
-        jPanel1.setPreferredSize(new java.awt.Dimension(890, 1400));
+        jPanel1.setMinimumSize(new java.awt.Dimension(897, 1490));
+        jPanel1.setPreferredSize(new java.awt.Dimension(897, 1490));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
@@ -198,10 +225,18 @@ public class Principal extends javax.swing.JFrame {
 
         tarConclusiones.setEditable(false);
         tarConclusiones.setColumns(20);
+        tarConclusiones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tarConclusiones.setRows(5);
         jScrollPane2.setViewportView(tarConclusiones);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1280, 820, 90));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1280, 820, 160));
+
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel27.setText("Creado con:");
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 710, -1, 30));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LOGO_IS.png"))); // NOI18N
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 720, -1, -1));
 
         labEcuacion.setIcon(iconFormulaZcal);
         labEcuacion.setBorder(javax.swing.BorderFactory.createTitledBorder("Fórmula:"));
@@ -220,10 +255,10 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.add(labPaso2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 150, 30));
         jPanel1.add(labResZcal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 680, 160, 40));
         jPanel1.add(labResZtab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 770, 390, 50));
-        jPanel1.add(labZcal, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 990, 150, 40));
-        jPanel1.add(labZtab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1070, 150, 40));
+        jPanel1.add(labZcal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 1000, 150, 40));
+        jPanel1.add(labZtab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 1100, 150, 40));
         jPanel1.add(labResZtab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 830, 390, 50));
-        jPanel1.add(labZtab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 1110, 150, 40));
+        jPanel1.add(labZtab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 1140, 150, 40));
 
         jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel32.setText("Procedimiento (Z Calculada):");
@@ -257,6 +292,32 @@ public class Principal extends javax.swing.JFrame {
         jLabel33.setText("4°");
         jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, -1, -1));
 
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel19.setText("Z Tabulada");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 1080, -1, -1));
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel25.setText("Z Calulada");
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 980, -1, -1));
+
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel28.setText("Tipo de prueba:  Hipótesis");
+        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 210, -1));
+
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel29.setText("Objetivo: Poporción poblacional");
+        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, 210, -1));
+
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel30.setText("HipoTest Calculator");
+        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, 210, -1));
+
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 210, 20));
+
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ICONO.png"))); // NOI18N
+        jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 50, 40, 40));
+
         jScrollPane1.setViewportView(jPanel1);
 
         jMenu5.setText("Opciones");
@@ -279,13 +340,13 @@ public class Principal extends javax.swing.JFrame {
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 396, Short.MAX_VALUE)
             .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 804, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 569, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -395,11 +456,6 @@ public class Principal extends javax.swing.JFrame {
         tpaMuestra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tpaMuestra.setText("0");
         tpaMuestra.setBorder(null);
-        tpaMuestra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tpaMuestraActionPerformed(evt);
-            }
-        });
         jPanel2.add(tpaMuestra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 220, -1));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LOGO_IS.png"))); // NOI18N
@@ -464,7 +520,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem5);
 
-        jMenuItem6.setText("Tablas estadísticas");
+        jMenuItem6.setText("Tabla Z");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -543,18 +599,72 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        capturarImagenComoPDF(this, jScrollPane1);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    public static void capturarImagenComoPDF(Component parentComponent, JScrollPane scrollPane) {
+        // Obtener el contenido del JScrollPane
+        Component contenido = scrollPane.getViewport().getView();
+        // Obtener las dimensiones del contenido
+        int ancho = 940;
+        int alto = 1550;
+
+        // Crear una instancia de Document para el PDF
+        Document documento = new Document();
+
+        JFileChooser fileChooser = new JFileChooser();
+        // Establecer un filtro de archivo predeterminado para extensiones .pdf
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos PDF (*.pdf)", "pdf");
+        fileChooser.setFileFilter(filter);
+
+        fileChooser.setDialogTitle("Guardar PDF");
+        int seleccion = fileChooser.showSaveDialog(parentComponent);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            String rutaArchivo = fileChooser.getSelectedFile().getAbsolutePath();
+            // Asegurarse de que la extensión .pdf esté presente en el nombre del archivo
+            if (!rutaArchivo.toLowerCase().endsWith(".pdf")) {
+                rutaArchivo += ".pdf"; // Agregar la extensión .pdf si no está presente
+            }
+
+            try {
+                // Crear un escritor PDF y especificar la ruta del archivo
+                PdfWriter.getInstance(documento, new FileOutputStream(rutaArchivo));
+                documento.open();
+                
+                // Crear una imagen con las mismas dimensiones
+                BufferedImage imagen = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
+                // Dibujar el contenido en la imagen
+                contenido.paint(imagen.getGraphics());
+                // Escalar la imagen para que quepa en la página del PDF
+                float escalaX = documento.getPageSize().getWidth() / ancho;
+                float escalaY = documento.getPageSize().getHeight() / alto;
+                // Crear un objeto Image de iText y escalar la imagen
+                Image imagenIText = Image.getInstance(imagen, null);
+                imagenIText.scaleAbsolute(ancho * escalaX, alto * escalaY);
+                documento.setPageSize(new Rectangle(612, 792)); // Tamaño carta en puntos
+                documento.add(imagenIText);
+
+                documento.close();
+                JOptionPane.showMessageDialog(parentComponent, "¡Operación guardada!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void butIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butIngresarMouseClicked
-        String simbolo1 = null;
-        String simbolo2 = null;
-
         jInternalFrame1.setVisible(false);
+        ejecutar();
+    }//GEN-LAST:event_butIngresarMouseClicked
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        jInternalFrame1.setVisible(false);
+        ejecutar();
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void ejecutar() {
         labPaso1a.setIcon(iconFormulaZcal);
-        double resZtab1;
-        double resZtab2;
-        double resZcal;
+
         try {
             setValPlantHipo((String) cboPlantHipo.getSelectedItem());
             setValPropHipo(sliProp.getValue());
@@ -566,64 +676,25 @@ public class Principal extends javax.swing.JFrame {
                 if (getValMuestra() >= getValExito()) {
                     if (getValMuestra() > 0 && getValExito() > 0) {
                         resZcal = Calculo.Zcal(getValExito(), getValMuestra(), getValPropHipo());
-                        resZtab1 = TablaZ.Caso1A(getValSig());
-                        resZtab2 = TablaZ.Caso1B(getValSig());
 
                         iconFormulaZcal = LaTex_formulas.prod1(getValExito(), getValMuestra(), (double) getValPropHipo() / 100.0);
                         labProd1.setIcon(iconFormulaZcal);
-
                         iconFormulaZcal = LaTex_formulas.prod2(getValExito(), getValMuestra(), (double) getValPropHipo() / 100.0);
                         labProd2.setIcon(iconFormulaZcal);
-
                         iconFormulaZcal = LaTex_formulas.prod3(getValExito(), getValMuestra(), (double) getValPropHipo() / 100.0);
                         labProd3.setIcon(iconFormulaZcal);
-
                         iconFormulaZcal = LaTex_formulas.prod4(getValExito(), getValMuestra(), (double) getValPropHipo() / 100.0);
                         labProd4.setIcon(iconFormulaZcal);
-
                         iconFormulaZcal = LaTex_formulas.prod5(getValExito(), getValMuestra(), (double) getValPropHipo() / 100.0);
                         labProd5.setIcon(iconFormulaZcal);
-
                         iconFormulaZcal = LaTex_formulas.prod6(getValExito(), getValMuestra(), (double) getValPropHipo() / 100.0);
                         labProd6.setIcon(iconFormulaZcal);
-
-                        String hipotesis = "";
-                        String mensaje = "";
-
-                        switch (valPlantHipo) {
-                            case "h0: π = π0 | h1: π ≠ π0":
-                                hipotesis = "H0";
-                                if (resZtab1 < resZcal && resZcal < resZtab2) {
-                                    mensaje = "no hay suficiente evidencia estadística para rechazar la hipótesis nula (H0). El porcentaje planteado no es igual a ";
-                                } else {
-                                    hipotesis = "H1";
-                                    mensaje = "hay suficiente evidencia estadística para rechazar la hipótesis nula (H0). El porcentaje planteado es igual a ";
-                                }   break;
-                            case "h0: π ≤ π0 | h1: π > π0":
-                                hipotesis = "H0";
-                                if (resZtab1 > resZcal) {
-                                    mensaje = "no hay suficiente evidencia estadística para rechazar la hipótesis nula (H0). El porcentaje planteado no es mayor a ";
-                                } else {
-                                    hipotesis = "H1";
-                                    mensaje = "hay suficiente evidencia estadística para rechazar la hipótesis nula (H0). El porcentaje planteado es mayor a ";
-                                }   break;
-                            case "h0: π ≥ π0 | h1: π < π0":
-                                hipotesis = "H0";
-                                if (resZtab1 < resZcal) {
-                                    mensaje = "no hay suficiente evidencia estadística para rechazar la hipótesis nula (H0). El porcentaje planteado no es menor a ";
-                                } else {
-                                    hipotesis = "H1";
-                                    mensaje = "hay suficiente evidencia estadística para rechazar la hipótesis nula (H0). El porcentaje planteado es menor a ";
-                                }   break;
-                            default:
-                                break;
-                        }
-                        tarConclusiones.setText("A un nivel de significancia del " + getValSig() + "%, " + mensaje + getValPropHipo() + "%\n(Se acepta " + hipotesis + ")\n\nZcal = " + resZcal + "\nZtab1 = " + resZtab1 + "\nZtab2 = " + resZtab2);
-
                         jInternalFrame1.setVisible(true);
 
                         switch (getValPlantHipo()) {
                             case "h0: π = π0 | h1: π ≠ π0":
+                                resZtab1 = TablaZ.Caso1A(getValSig());
+                                resZtab2 = TablaZ.Caso1B(getValSig());
                                 simbolo1 = "=";
                                 simbolo2 = "≠";
                                 iconFormulaZcal = LaTex_formulas.opZtab1((double) getValSig() / 100, resZtab1);
@@ -634,24 +705,80 @@ public class Principal extends javax.swing.JFrame {
                                 labZtab1.setIcon(iconFormulaZcal);
                                 iconFormulaZcal = LaTex_formulas.resZtab2(resZtab2);
                                 labZtab2.setIcon(iconFormulaZcal);
+
+                                if (resZtab1 < resZcal && resZcal < resZtab2) {
+                                    tarConclusiones.setText("A un nivel de significancia del " + getValSig() + "%, no hay suficiente evidencia estadística para rechazar la hipótesis nula (H0)."
+                                            + "\nEl porcentaje planteado no es igual a " + getValPropHipo() + "%."
+                                            + "\n(Se acepta H0)."
+                                            + "\n==========="
+                                            + "\nZcal = " + resZcal
+                                            + "\nZtab1 = " + resZtab1
+                                            + "\nZtab2 = " + resZtab2);
+                                } else {
+                                    tarConclusiones.setText("A un nivel de significancia del " + getValSig() + "%, hay suficiente evidencia estadística para rechazar la hipótesis nula (H0)."
+                                            + "\nEl porcentaje planteado es igual a " + getValPropHipo() + "%."
+                                            + "\n(Se acepta H1)."
+                                            + "\n==========="
+                                            + "\nZcal = " + resZcal
+                                            + "\nZtab1 = " + resZtab1
+                                            + "\nZtab2 = " + resZtab2);
+                                }
                                 break;
 
                             case "h0: π ≤ π0 | h1: π > π0":
+                                resZtab1 = TablaZ.Caso2(getValSig());
                                 simbolo1 = "≤";
                                 simbolo2 = ">";
                                 iconFormulaZcal = LaTex_formulas.opZtab1((double) getValSig() / 100, TablaZ.Caso2(getValSig()));
                                 labResZtab1.setIcon(iconFormulaZcal);
                                 iconFormulaZcal = LaTex_formulas.resZtab1(resZtab1);
                                 labZtab1.setIcon(iconFormulaZcal);
+                                labZtab2.setIcon(null);
+                                labResZtab2.setIcon(null);
+
+                                if (resZtab1 > resZcal) {
+                                    tarConclusiones.setText("A un nivel de significancia del " + getValSig() + "%, no hay suficiente evidencia estadística para rechazar la hipótesis nula (H0)."
+                                            + "\nEl porcentaje planteado no es mayor a " + getValPropHipo() + "%."
+                                            + "\n(Se acepta H0)."
+                                            + "\n==========="
+                                            + "\nZcal = " + resZcal
+                                            + "\nZtab = " + resZtab1);
+                                } else {
+                                    tarConclusiones.setText("A un nivel de significancia del " + getValSig() + "%, hay suficiente evidencia estadística para rechazar la hipótesis nula (H0)."
+                                            + "\nEl porcentaje planteado es mayor a " + getValPropHipo() + "%"
+                                            + "\n(Se acepta H1)."
+                                            + "\n==========="
+                                            + "\nZcal = " + resZcal
+                                            + "\nZtab = " + resZtab1);
+                                }
                                 break;
 
                             case "h0: π ≥ π0 | h1: π < π0":
+                                resZtab1 = TablaZ.Caso3(getValSig());
                                 simbolo1 = "≥";
                                 simbolo2 = "<";
                                 iconFormulaZcal = LaTex_formulas.opZtab1((double) getValSig() / 100, TablaZ.Caso3(getValSig()));
                                 labResZtab1.setIcon(iconFormulaZcal);
                                 iconFormulaZcal = LaTex_formulas.resZtab1(resZtab1);
                                 labZtab1.setIcon(iconFormulaZcal);
+                                labZtab2.setIcon(null);
+                                labResZtab2.setIcon(null);
+
+                                if (resZtab1 < resZcal) {
+                                    tarConclusiones.setText("A un nivel de significancia del " + getValSig() + "%, no hay suficiente evidencia estadística para rechazar la hipótesis nula (H0)."
+                                            + "\nEl porcentaje planteado no es menor a " + getValPropHipo() + "%."
+                                            + "\n(Se acepta H0)."
+                                            + "\n==========="
+                                            + "\nZcal = " + resZcal
+                                            + "\nZtab = " + resZtab1);
+                                } else {
+                                    tarConclusiones.setText("A un nivel de significancia del " + getValSig() + "%, hay suficiente evidencia estadística para rechazar la hipótesis nula (H0)."
+                                            + "\nEl porcentaje planteado es menor a " + getValPropHipo() + "%."
+                                            + "\n(Se acepta H1)."
+                                            + "\n==========="
+                                            + "\nZcal = " + resZcal
+                                            + "\nZtab1 = " + resZtab1);
+                                }
                                 break;
                         }
 
@@ -681,11 +808,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingrese únicamente valores válidos");
         }
-    }//GEN-LAST:event_butIngresarMouseClicked
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         new AcercaPrograma().setVisible(true);
@@ -693,7 +816,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         try {
-            Desktop.getDesktop().browse(new URI("http://administracion.universidadipei.com/wp-content/uploads/2020/11/A3.pdf"));
+            Desktop.getDesktop().browse(new URI("https://drive.google.com/file/d/1cU5FdxxJCnpFmhQc33ka2ibkNddaTxl3/view?usp=drive_link"));
         } catch (IOException | URISyntaxException ex) {
             ex.printStackTrace();
         }
@@ -701,7 +824,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         try {
-            Desktop.getDesktop().browse(new URI("https://estadistica-dma.ulpgc.es/estadFCM/pdf/distribuciones.pdf"));
+            Desktop.getDesktop().browse(new URI("https://drive.google.com/file/d/1LC-L229lWSPCGSxy7vQe_Ab5LeyEn_ly/view?usp=drive_link"));
         } catch (IOException | URISyntaxException ex) {
             ex.printStackTrace();
         }
@@ -716,10 +839,6 @@ public class Principal extends javax.swing.JFrame {
         valSig = sliSig.getValue();
         tfiSig.setText(String.valueOf(getValSig()) + "%");
     }//GEN-LAST:event_sliSigStateChanged
-
-    private void tpaMuestraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tpaMuestraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tpaMuestraActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -772,18 +891,27 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

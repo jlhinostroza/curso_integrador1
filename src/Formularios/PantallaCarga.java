@@ -1,7 +1,7 @@
 package Formularios;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
 
 public class PantallaCarga extends javax.swing.JFrame {
 
@@ -20,7 +20,7 @@ public class PantallaCarga extends javax.swing.JFrame {
             jProgressBar1.setValue(progreso);
             if (progreso >= 100) {
                 timer.stop();
-                this.setVisible(false);
+                dispose();
                 new Principal().setVisible(true);
             }
         });
