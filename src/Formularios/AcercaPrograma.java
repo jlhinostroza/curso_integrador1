@@ -1,7 +1,6 @@
 
 package Formularios;
 
-import Clases.DatosPrograma;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import Clases.DatosPrograma;

@@ -52,7 +52,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="labVersion">
           <Properties>
             <Property name="text" type="java.lang.String" value="HipoTest - Version: SNAPSHOT v0.3"/>
           </Properties>

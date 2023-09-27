@@ -49,7 +49,6 @@ public class LaTex_formulas {
         double p = (double) x/n;
         double piRes = 1 - P;
         double numerador = p - P;
-        double denominadorFraccion = P * piRes;
         String latexFormula = "Z_{\\text{cal}} = \\frac{" + (double) Math.round(numerador * 1000) / 1000 + "}{\\sqrt{\\frac{" + (double) Math.round(P * 1000) / 1000 + "(" + (double) Math.round(piRes * 1000) / 1000 + ")}{" + n + "}}}";
         TeXIcon icono = setIcono(latexFormula);
         return icono;
@@ -93,14 +92,29 @@ public class LaTex_formulas {
         return icono;
     }
     
-    public static TeXIcon opZtab1(double significancia, double resZtab1) {
-        String latexFormula = "Z_{\\text{tab1}} = Z_{\\text{(" + significancia +")}} = " + resZtab1;
+    public static TeXIcon opZtab1(double significancia, double resZtab1, int caso) {
+        double ZaCal = 0;
+        switch(caso){
+            case 1:
+                ZaCal = significancia/2;
+                break;
+            case 2:
+                ZaCal = 1 - significancia;
+                break;
+            case 3:
+                ZaCal = significancia;
+                break;
+            default:
+                break;
+        }
+        String latexFormula = "Z_{\\text{tab1}} = Z_{\\text{(" + ZaCal +")}} = " + resZtab1;
         TeXIcon icono = setIcono(latexFormula);
         return icono;
     }
     
-    public static TeXIcon opZtab2(double significancia, double resZtab2) {
-        String latexFormula = "Z_{\\text{tab2}} = Z_{\\text{(" + significancia +")}} = " + resZtab2;
+    public static TeXIcon opZtab2(double significancia, double resZtab2, int caso) {
+        double ZaCal = 1 - (significancia/2);
+        String latexFormula = "Z_{\\text{tab2}} = Z_{\\text{(" + ZaCal +")}} = " + resZtab2;
         TeXIcon icono = setIcono(latexFormula);
         return icono;
     }

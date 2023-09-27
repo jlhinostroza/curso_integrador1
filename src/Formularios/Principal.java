@@ -322,7 +322,8 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu5.setText("Opciones");
 
-        jMenuItem7.setText("Imprimir");
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem7.setText("Guardar operación (Como PDF)");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -471,6 +472,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jMenuItem2.setText("Salir");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -497,6 +499,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu6.setBackground(new java.awt.Color(221, 221, 221));
         jMenu6.setText("Ejecución");
 
+        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0));
         jMenuItem8.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jMenuItem8.setForeground(new java.awt.Color(0, 204, 0));
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/play-16.png"))); // NOI18N
@@ -532,6 +535,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu2.setText("Ayuda");
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem1.setText("Acerca del programa");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -697,9 +701,9 @@ public class Principal extends javax.swing.JFrame {
                                 resZtab2 = TablaZ.Caso1B(getValSig());
                                 simbolo1 = "=";
                                 simbolo2 = "≠";
-                                iconFormulaZcal = LaTex_formulas.opZtab1((double) getValSig() / 100, resZtab1);
+                                iconFormulaZcal = LaTex_formulas.opZtab1((double) getValSig() / 100, resZtab1, 1);
                                 labResZtab1.setIcon(iconFormulaZcal);
-                                iconFormulaZcal = LaTex_formulas.opZtab2((double) getValSig() / 100, resZtab2);
+                                iconFormulaZcal = LaTex_formulas.opZtab2((double) getValSig() / 100, resZtab2, 1);
                                 labResZtab2.setIcon(iconFormulaZcal);
                                 iconFormulaZcal = LaTex_formulas.resZtab1(resZtab1);
                                 labZtab1.setIcon(iconFormulaZcal);
@@ -729,7 +733,7 @@ public class Principal extends javax.swing.JFrame {
                                 resZtab1 = TablaZ.Caso2(getValSig());
                                 simbolo1 = "≤";
                                 simbolo2 = ">";
-                                iconFormulaZcal = LaTex_formulas.opZtab1((double) getValSig() / 100, TablaZ.Caso2(getValSig()));
+                                iconFormulaZcal = LaTex_formulas.opZtab1((double) getValSig() / 100, TablaZ.Caso2(getValSig()), 2);
                                 labResZtab1.setIcon(iconFormulaZcal);
                                 iconFormulaZcal = LaTex_formulas.resZtab1(resZtab1);
                                 labZtab1.setIcon(iconFormulaZcal);
@@ -757,7 +761,7 @@ public class Principal extends javax.swing.JFrame {
                                 resZtab1 = TablaZ.Caso3(getValSig());
                                 simbolo1 = "≥";
                                 simbolo2 = "<";
-                                iconFormulaZcal = LaTex_formulas.opZtab1((double) getValSig() / 100, TablaZ.Caso3(getValSig()));
+                                iconFormulaZcal = LaTex_formulas.opZtab1((double) getValSig() / 100, TablaZ.Caso3(getValSig()), 3);
                                 labResZtab1.setIcon(iconFormulaZcal);
                                 iconFormulaZcal = LaTex_formulas.resZtab1(resZtab1);
                                 labZtab1.setIcon(iconFormulaZcal);

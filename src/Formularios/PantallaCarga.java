@@ -1,5 +1,6 @@
 package Formularios;
 
+import Clases.DatosPrograma;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
@@ -25,6 +26,7 @@ public class PantallaCarga extends javax.swing.JFrame {
             }
         });
         timer.start();
+        labVersion.setText("HipoTest - Version: " + DatosPrograma.version);
     }
 
     @SuppressWarnings("unchecked")
@@ -33,7 +35,7 @@ public class PantallaCarga extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
-        jLabel1 = new javax.swing.JLabel();
+        labVersion = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,8 +45,8 @@ public class PantallaCarga extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 360, 10));
 
-        jLabel1.setText("HipoTest - Version: SNAPSHOT v0.3");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        labVersion.setText("HipoTest - Version: SNAPSHOT v0.3");
+        jPanel1.add(labVersion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LOGO_IS.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 220, 100));
@@ -97,9 +99,9 @@ public class PantallaCarga extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel labVersion;
     // End of variables declaration//GEN-END:variables
 }
