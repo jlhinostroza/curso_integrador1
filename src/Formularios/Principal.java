@@ -125,11 +125,11 @@ public class Principal extends javax.swing.JFrame {
         mitBorrar = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         mitEjecutar = new javax.swing.JMenuItem();
-        mitMaterial = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu = new javax.swing.JMenu();
+        mitMaterial = new javax.swing.JMenuItem();
         mitTablaZ = new javax.swing.JMenuItem();
         mitAcercaProg = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mitAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(899, 730));
@@ -467,15 +467,15 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
-        mitMaterial.setText("Recursos");
+        jMenu.setText("Recursos");
 
-        jMenuItem5.setText("Material informativo");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        mitMaterial.setText("Material informativo");
+        mitMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                mitMaterialActionPerformed(evt);
             }
         });
-        mitMaterial.add(jMenuItem5);
+        jMenu.add(mitMaterial);
 
         mitTablaZ.setText("Tabla Z");
         mitTablaZ.addActionListener(new java.awt.event.ActionListener() {
@@ -483,20 +483,20 @@ public class Principal extends javax.swing.JFrame {
                 mitTablaZActionPerformed(evt);
             }
         });
-        mitMaterial.add(mitTablaZ);
+        jMenu.add(mitTablaZ);
 
-        jMenuBar1.add(mitMaterial);
+        jMenuBar1.add(jMenu);
 
         mitAcercaProg.setText("Ayuda");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem1.setText("Acerca del programa");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mitAbout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mitAbout.setText("Acerca del programa");
+        mitAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mitAboutActionPerformed(evt);
             }
         });
-        mitAcercaProg.add(jMenuItem1);
+        mitAcercaProg.add(mitAbout);
 
         jMenuBar1.add(mitAcercaProg);
 
@@ -560,7 +560,7 @@ public class Principal extends javax.swing.JFrame {
         capturarImagenComoPDF(this, jScrollPane1);
     }//GEN-LAST:event_mitGuardarActionPerformed
 
-    public static void capturarImagenComoPDF(Component parentComponent, JScrollPane scrollPane) {
+    private static void capturarImagenComoPDF(Component parentComponent, JScrollPane scrollPane) {
         JFileChooser fileChooser = crearFileChooser();
         int selection = fileChooser.showSaveDialog(parentComponent);
 
@@ -625,7 +625,7 @@ public class Principal extends javax.swing.JFrame {
         ejecutar();
     }//GEN-LAST:event_mitEjecutarActionPerformed
 
-    public void ejecutar() {
+    private void ejecutar() {
         try {
             setearValores();
             obtenerValores();
@@ -799,17 +799,17 @@ public class Principal extends javax.swing.JFrame {
         labGrafico.setIcon(iconoGraf);
     }
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mitAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitAboutActionPerformed
         new AcercaPrograma().setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mitAboutActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void mitMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitMaterialActionPerformed
         try {
             Desktop.getDesktop().browse(new URI("https://drive.google.com/file/d/1cU5FdxxJCnpFmhQc33ka2ibkNddaTxl3/view?usp=drive_link"));
         } catch (IOException | URISyntaxException ex) {
             ex.printStackTrace();
         }
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_mitMaterialActionPerformed
 
     private void mitTablaZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitTablaZActionPerformed
         try {
@@ -907,14 +907,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -939,11 +938,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel labZcal;
     private javax.swing.JLabel labZtab1;
     private javax.swing.JLabel labZtab2;
+    private javax.swing.JMenuItem mitAbout;
     private javax.swing.JMenu mitAcercaProg;
     private javax.swing.JMenuItem mitBorrar;
     private javax.swing.JMenuItem mitEjecutar;
     private javax.swing.JMenuItem mitGuardar;
-    private javax.swing.JMenu mitMaterial;
+    private javax.swing.JMenuItem mitMaterial;
     private javax.swing.JMenuItem mitNuevaOp;
     private javax.swing.JMenuItem mitSalir;
     private javax.swing.JMenuItem mitTablaZ;
